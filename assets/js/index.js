@@ -4,7 +4,7 @@ const questions = [
     questions: [
       {
         question: "What is the capital of the Ireland?",
-        possibilities: [" Dublin ", "Cork", "Belfast", "Galway"],
+        possibilities: ["Dublin", "Cork", "Belfast", "Galway"],
         answer: "Dublin",
       },
       {
@@ -421,7 +421,7 @@ function playGame(event) {
       correctBox.textContent = `Correct Answer: ${correctAnswers}`;
     } else {
       wrongAnswers++;
-       // add 1 to the incorrect answers text
+      // add 1 to the incorrect answers text
       incorrectBox.textContent = `Incorrect Answers: ${wrongAnswers}`;
     }
   });
