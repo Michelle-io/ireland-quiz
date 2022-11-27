@@ -367,3 +367,62 @@ let correctBox = scoreArea.children[0];
 let incorrectBox = scoreArea.children[1];
 const question = questionArea.children[0];
 const possibilities = questionArea.children[1];
+
+// loop through the topics and create a list item for each one
+questions.forEach((element) => {
+  const listItem = document.createElement("li");
+  listItem.textContent = element.topic;
+  categoryList.appendChild(listItem);
+});
+
+// add an event listener to the category list
+categoryList.addEventListener("click", (event) => {
+  playGame(event);
+});
+
+function playGame(event) {
+  // get the category that was clicked
+  const category = event.target.textContent;
+  //get the questions for that category
+  const questionList = questions.find((element) => {
+    return element.topic === category;
+  });
+  // get random questions from the category
+  const randomQuestion =
+    questionList.questions[Math.floor(Math.random() * questions.length)];
+
+  // get the question and possibilities from the random question
+  const randomQuestionList = randomQuestion.question;
+  const possibilities = randomQuestion.possibilities;
+
+  // set the question text
+  question.textContent = randomQuestion.question;
+  // get the list of possible answers
+  const answers = randomQuestion.answer;
+  // get the list element
+  const answerList = document.querySelector("#question").nextElementSibling;
+  // clear the list
+  answerList.innerHTML = "";
+  // loop through the answers and create a list item for each one
+  possibilities.forEach((possibility) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = possibility;
+    answerList.appendChild(listItem);
+  });
+
+  //add an event listener to the list of answers
+  answerList.addEventListener("click", (event) => {
+    // get the answer that was clicked
+    const answer = event.target.textContent;
+    // check if the answer is correct
+    if (answer === answers) {
+      correctAnswers++;
+      // add 1 to the correct answers text
+      correctBox.textContent = `Correct Answer: ${correctAnswers}`;
+    } else {
+      wrongAnswers++;
+       // add 1 to the incorrect answers text
+      incorrectBox.textContent = `Incorrect Answers: ${wrongAnswers}`;
+    }
+  });
+}
