@@ -355,3 +355,15 @@ const questions = [
   },
 ];
 
+let wrongAnswers = 0;
+let correctAnswers = 0;
+let currentTopic = "general knowledge";
+
+// Add topics to the DOM
+const categoryList = document.querySelector("nav ul");
+const questionArea = document.querySelector("#questions-area");
+const scoreArea = document.querySelector("#score-area");
+let correctBox = scoreArea.children[0];
+let incorrectBox = scoreArea.children[1];
+const question = questionArea.children[0];
+const possibilities = questionArea.children[1];
